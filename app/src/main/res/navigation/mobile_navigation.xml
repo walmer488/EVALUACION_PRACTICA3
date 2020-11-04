@@ -22,4 +22,10 @@
         android:name="com.example.crudmysql_eva3.ui.slideshow.SlideshowFragment"
         android:label="@string/menu_slideshow"
         tools:layout="@layout/fragment_slideshow" />
+
+    <fragment
+        android:id="@+id/nav_categoria"
+        android:name="com.example.crudmysql_eva3.ui.Categoria.categoria"
+        android:label="fragment_categoria"
+        tools:layout="@layout/fragment_categoria" />
 </navigation>
