@@ -26,16 +26,22 @@
     <fragment
         android:id="@+id/nav_categoria"
         android:name="com.example.crudmysql_eva3.ui.Categoria.categoria"
-        android:label="fragment_categoria"
+        android:label="Registrar categoria"
         tools:layout="@layout/fragment_categoria" />
 
     <fragment
         android:id="@+id/nav_listaCategorias"
         android:name="com.example.crudmysql_eva3.ui.ListaCategorias.ListaCategorias"
-        android:label="ListaCategorias" />
+        android:label="Lista de Categorias" />
+
     <fragment
         android:id="@+id/nav_productos"
         android:name="com.example.crudmysql_eva3.ui.Producto.productos"
-        android:label="fragment_productos"
+        android:label="Registrar productos"
         tools:layout="@layout/fragment_productos" />
+    <fragment
+        android:id="@+id/nav_usuario"
+        android:name="com.example.crudmysql_eva3.ui.Usuario.Usuario"
+        android:label="Registrar Usuario"
+        tools:layout="@layout/fragment_usuario" />
 </navigation>
