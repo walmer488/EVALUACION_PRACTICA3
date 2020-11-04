@@ -33,4 +33,9 @@
         android:id="@+id/nav_listaCategorias"
         android:name="com.example.crudmysql_eva3.ui.ListaCategorias.ListaCategorias"
         android:label="ListaCategorias" />
+    <fragment
+        android:id="@+id/nav_productos"
+        android:name="com.example.crudmysql_eva3.ui.Producto.productos"
+        android:label="fragment_productos"
+        tools:layout="@layout/fragment_productos" />
 </navigation>

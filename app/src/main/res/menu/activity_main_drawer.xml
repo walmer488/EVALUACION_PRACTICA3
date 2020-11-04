@@ -25,5 +25,9 @@
             android:id="@+id/nav_listaCategorias"
             android:title="Lista de Caategorias" />
 
+        <item
+            android:id="@+id/nav_productos"
+            android:title="Lista de Caategorias" />
+
     </group>
 </menu>
