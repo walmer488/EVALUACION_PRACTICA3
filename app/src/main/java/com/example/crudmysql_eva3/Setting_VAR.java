@@ -1,4 +1,4 @@
-package com.example.crudmysql_eva3.ui;
+package com.example.crudmysql_eva3;
 
 public class Setting_VAR {
 

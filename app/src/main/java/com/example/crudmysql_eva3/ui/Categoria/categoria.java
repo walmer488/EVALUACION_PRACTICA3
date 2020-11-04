@@ -1,6 +1,5 @@
 package com.example.crudmysql_eva3.ui.Categoria;
 
-import android.app.DownloadManager;
 import android.content.Context;
 import android.os.Bundle;
 
@@ -23,8 +22,8 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.example.crudmysql_eva3.R;
-import com.example.crudmysql_eva3.ui.MySingleton;
-import com.example.crudmysql_eva3.ui.Setting_VAR;
+import com.example.crudmysql_eva3.MySingleton;
+import com.example.crudmysql_eva3.Setting_VAR;
 import com.google.android.material.textfield.TextInputLayout;
 
 import org.json.JSONException;

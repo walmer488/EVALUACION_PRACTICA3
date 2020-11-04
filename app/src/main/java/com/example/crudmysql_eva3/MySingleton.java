@@ -1,4 +1,4 @@
-package com.example.crudmysql_eva3.ui;
+package com.example.crudmysql_eva3;
 
 import android.content.Context;
 import android.graphics.Bitmap;
