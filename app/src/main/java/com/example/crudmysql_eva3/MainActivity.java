@@ -1,6 +1,8 @@
 package com.example.crudmysql_eva3;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.Menu;
 
@@ -52,6 +54,17 @@ public class MainActivity extends AppCompatActivity {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
         return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item){
+        int id = item.getItemId();
+        if (id == R.id.ACERCADE) {
+            Intent spinnerActivity = new Intent(MainActivity.this, AcercaDe.class);
+            startActivity(spinnerActivity);
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     @Override
