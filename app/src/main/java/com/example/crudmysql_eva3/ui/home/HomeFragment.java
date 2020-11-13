@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -16,6 +17,7 @@ import com.example.crudmysql_eva3.R;
 
 public class HomeFragment extends Fragment {
 
+    private Button editar;
     private HomeViewModel homeViewModel;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -32,4 +34,7 @@ public class HomeFragment extends Fragment {
         });
         return root;
     }
+
+
+
 }

@@ -16,12 +16,15 @@
         android:textStyle="bold"
         android:inputType="textPersonName"
         android:hint="Ingrese el usuario"
+        android:drawableStart="@drawable/user"
+        android:drawablePadding="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.253" />
+        app:layout_constraintVertical_bias="0.253"
+        tools:ignore="RtlCompat" />
 
     <EditText
         android:id="@+id/ET_CLA"
@@ -31,18 +34,23 @@
         android:textSize="20dp"
         android:textStyle="bold"
         android:hint="Ingresé su contraseña."
+        android:drawableStart="@drawable/password"
+        android:drawablePadding="10dp"
         android:inputType="textPassword"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.389" />
+        app:layout_constraintVertical_bias="0.389"
+        tools:ignore="RtlCompat" />
 
     <Button
         android:id="@+id/btninicio"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="244dp"
+        android:layout_height="41dp"
+        android:background="@drawable/button_stilos"
         android:text="Ingresar"
+        android:textColor="#000"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

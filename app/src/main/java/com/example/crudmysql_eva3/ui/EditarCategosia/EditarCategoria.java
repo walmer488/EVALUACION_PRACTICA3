@@ -1,6 +1,5 @@
-package com.example.crudmysql_eva3.ui.Categoria;
+package com.example.crudmysql_eva3.ui.EditarCategosia;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -21,6 +20,7 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
+import com.example.crudmysql_eva3.ModeloCategoria;
 import com.example.crudmysql_eva3.MySingleton;
 import com.example.crudmysql_eva3.R;
 import com.example.crudmysql_eva3.Setting_VAR;
@@ -30,25 +30,25 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
-import static android.content.ContentValues.TAG;
+public class EditarCategoria extends Fragment {
 
-public class categoria extends Fragment implements View.OnClickListener {
-
+    private static final String TAG = "EditarCategoria";
     private TextInputLayout ti_idcategoria, ti_namecategoria;
     private EditText et_idcategoria, et_namecategoria;
     private Spinner sp_estado;
     private Button btnSave, btnNew, btnEditar;
     String datoSelect = "";
 
-    //ListaCategoria listaCategoria = new ListaCategoria();
-    private int list_reciclerview;
+    private List<ModeloCategoria> CategoriaLista;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View root = inflater.inflate(R.layout.fragment_categoria, container, false);
+        View root =  inflater.inflate(R.layout.fragment_editar_categoria, container, false);
 
         ti_idcategoria = root.findViewById(R.id.ti_idcategoria);
         ti_namecategoria = root.findViewById(R.id.ti_namecategoria);
@@ -60,6 +60,11 @@ public class categoria extends Fragment implements View.OnClickListener {
                 R.array.EstadoCategoria, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         sp_estado.setAdapter(adapter);
+
+        et_idcategoria.setText(getArguments().getString("id"));
+        et_namecategoria.setText(getArguments().getString("nombre"));
+        sp_estado.setSelection(adapter.getPosition(getArguments().getString("estado")));
+
         sp_estado.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -68,69 +73,49 @@ public class categoria extends Fragment implements View.OnClickListener {
                 } else {
                     datoSelect = "";
                 }
-
             }
-
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
             }
         });
-        btnSave = root.findViewById(R.id.btnSave);
 
-        btnSave.setOnClickListener(this);
-        return root;
+        btnEditar = root.findViewById(R.id.btnEdit);
 
-    }
+        btnEditar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.btnSave:
-                //save_server(getContext(),);
                 String id = et_idcategoria.getText().toString();
-                String nombre = et_namecategoria.getText().toString();
-                if (id.length() == 0) {
-                    et_idcategoria.setError("Campo obligatorio");
-                } else if (nombre.length() == 0) {
-                    et_namecategoria.setError("Campo obligatorio");
-                    //}else if(!datoSelect.isEmpty()){
-                } else if (sp_estado.getSelectedItemPosition() > 0) {
-                    //Acciones para guardar registro en la base de datos.
-                    //Toast.makeText(getContext(), "Bien...", Toast.LENGTH_SHORT).show();
-                    save_server(getContext(), Integer.parseInt(id), nombre, Integer.parseInt(datoSelect));
-                    Navigation.findNavController(v).navigate(R.id.nav_listaCategorias);
-                } else {
-                    Toast.makeText(getContext(), "Debe seleccionar un estado para la categoria",
-                            Toast.LENGTH_SHORT).show();
-                }
+                String name = et_namecategoria.getText().toString();
+                String estado = sp_estado.getSelectedItem().toString();
 
+                Log.i(TAG, "onClick -> id: " + id + ", name: " + name + ", estado: " + estado);
 
-                break;
-
-            default:
-        }
+                editarCat(Integer.parseInt(id), name, Integer.parseInt(estado));
+                Navigation.findNavController(v).navigate(R.id.nav_listaCategorias);
+            }
+        });
+        return root;
     }
 
 
-
-
-    private void save_server(final Context context, final int id_categoria, final String nom_categoria, final int estado_categoria) {
-        final StringRequest request = new StringRequest(Request.Method.POST, Setting_VAR.URL_guardar_categoria, new Response.Listener<String>() {
+    private void editarCat(final int id_categoria, final String nom_categoria, final int estado_categoria ) {
+        final StringRequest request = new StringRequest(Request.Method.POST, Setting_VAR.URL_Editar_Categoria, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
 
                 JSONObject resquestJSON = null;
-                // Log.i(TAG, "response:" + response);
+                Log.i(TAG, "response:" + response);
                 try {
                     resquestJSON = new JSONObject(response.toString());
                     String estado = resquestJSON.getString("estado");
                     String mensaje = resquestJSON.getString("mensaje");
 
                     if (estado.equals("1")) {
-                        Toast.makeText(context, mensaje, Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getContext(), mensaje, Toast.LENGTH_SHORT).show();
                         Log.i(TAG ,"estado" + estado);
                     } else if (estado.equals("2")) {
-                        Toast.makeText(context, "" + mensaje, Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getContext(), "" + mensaje, Toast.LENGTH_SHORT).show();
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -139,10 +124,11 @@ public class categoria extends Fragment implements View.OnClickListener {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError volleyError) {
-                Toast.makeText(context, "No se puede guardar.\n" + "Intentelo más tarde.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "No se puede guardar.\n" + "Intentelo más tarde.", Toast.LENGTH_SHORT).show();
             }
         }) {
             protected Map<String, String> getParams() throws AuthFailureError {
+                List<ModeloCategoria> CategoriaLista;
                 Map<String, String> map = new HashMap<>();
                 map.put("Content-Type", "application/json; charset=utf-8");
                 map.put("Accept", "application/json");
@@ -152,11 +138,46 @@ public class categoria extends Fragment implements View.OnClickListener {
                 return map;
             }
         };
-        MySingleton.getInstance(context).addToRequestQueue(request);
+        MySingleton.getInstance(getContext()).addToRequestQueue(request);
     }
-    private void new_categories() {
-        et_idcategoria.setText(null);
-        et_namecategoria.setText(null);
-        sp_estado.setSelection(0);
+
+    private void eliminarCat(final int id_categoria) {
+        final StringRequest request = new StringRequest(Request.Method.POST, Setting_VAR.URL_Eliminar_Categoria, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+
+                JSONObject resquestJSON = null;
+                Log.i(TAG, "response:" + response);
+                try {
+                    resquestJSON = new JSONObject(response.toString());
+                    String estado = resquestJSON.getString("estado");
+                    String mensaje = resquestJSON.getString("mensaje");
+
+                    if (estado.equals("1")) {
+                        Toast.makeText(getContext(), mensaje, Toast.LENGTH_SHORT).show();
+                        Log.i(TAG ,"estado" + estado);
+                    } else if (estado.equals("2")) {
+                        Toast.makeText(getContext(), "" + mensaje, Toast.LENGTH_SHORT).show();
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError volleyError) {
+                Toast.makeText(getContext(), "No se puede eliminar.\n" + "Intentelo más tarde.", Toast.LENGTH_SHORT).show();
+            }
+        }) {
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> map = new HashMap<>();
+                map.put("Content-Type", "application/json; charset=utf-8");
+                map.put("Accept", "application/json");
+                map.put("id", String.valueOf(id_categoria));
+                return map;
+            }
+        };
+        MySingleton.getInstance(getContext()).addToRequestQueue(request);
     }
+
 }

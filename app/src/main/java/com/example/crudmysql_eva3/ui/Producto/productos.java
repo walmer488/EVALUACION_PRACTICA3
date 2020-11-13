@@ -3,9 +3,6 @@ package com.example.crudmysql_eva3.ui.Producto;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -18,6 +15,8 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.fragment.app.Fragment;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -93,7 +92,6 @@ public class productos extends Fragment {
         tv_fechahora = view.findViewById(R.id.tv_fechahora);
         tv_fechahora.setText(timedate());
         btnSave = view.findViewById(R.id.btnSave);
-        btnNew = view.findViewById(R.id.btnNew);
 
         sp_estadoProductos.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -173,12 +171,6 @@ public class productos extends Fragment {
             }
         });
 
-        btnNew.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                new_product();
-            }
-        });
         return view;
     }
 

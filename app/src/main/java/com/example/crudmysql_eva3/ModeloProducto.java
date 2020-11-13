@@ -4,25 +4,25 @@ public class ModeloProducto {
 
     int id_producto;
     String nom_producto;
-    double stock;
+    String des_producto;
+    int stock;
     double precio;
     String unidadmedida;
     int estado_producto;
-    int categoria;
-    String des_producto;
+    int categoria;;
 
     public ModeloProducto() {
     }
 
-    public ModeloProducto(int id_producto, String nom_producto, double stock, double precio, String unidadmedida, int estado_producto, int categoria, String des_producto) {
+    public ModeloProducto(int id_producto, String nom_producto, String des_producto, int stock, double precio, String unidadmedida, int estado_producto, int categoria) {
         this.id_producto = id_producto;
         this.nom_producto = nom_producto;
+        this.des_producto = des_producto;
         this.stock = stock;
         this.precio = precio;
         this.unidadmedida = unidadmedida;
         this.estado_producto = estado_producto;
         this.categoria = categoria;
-        this.des_producto = des_producto;
     }
 
     public int getId_producto() {
@@ -41,11 +41,19 @@ public class ModeloProducto {
         this.nom_producto = nom_producto;
     }
 
-    public double getStock() {
+    public String getDes_producto() {
+        return des_producto;
+    }
+
+    public void setDes_producto(String des_producto) {
+        this.des_producto = des_producto;
+    }
+
+    public int getStock() {
         return stock;
     }
 
-    public void setStock(double stock) {
+    public void setStock(int stock) {
         this.stock = stock;
     }
 
@@ -79,13 +87,5 @@ public class ModeloProducto {
 
     public void setCategoria(int categoria) {
         this.categoria = categoria;
-    }
-
-    public String getDes_producto() {
-        return des_producto;
-    }
-
-    public void setDes_producto(String des_producto) {
-        this.des_producto = des_producto;
     }
 }

@@ -2,9 +2,6 @@ package com.example.crudmysql_eva3.ui.Usuario;
 
 import android.content.Context;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,6 +13,8 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.fragment.app.Fragment;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -67,7 +66,6 @@ public class Usuario extends Fragment {
         tv_fechahora.setText(timedate());
 
         btn_guardar = root.findViewById(R.id.btn_guardar);
-        btn_nuevo = root.findViewById(R.id.btn_nuevo);
 
         ArrayAdapter<CharSequence> tipo = ArrayAdapter.createFromResource(getContext(),
                 R.array.TipoUsuario, android.R.layout.simple_spinner_item);
@@ -182,12 +180,6 @@ public class Usuario extends Fragment {
                     save_usuarios(getContext(), id, nombre, apellido, correo, usuario, clave, datoSelect1, datoSelect2, datoSelect3, respuesta);
                 }
 
-            }
-        });
-        btn_nuevo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                nuevo_usuario();
             }
         });
 

@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/nav_home">
+    app:startDestination="@id/nav_home">
 
     <fragment
         android:id="@+id/nav_home"
@@ -27,21 +27,60 @@
         android:id="@+id/nav_categoria"
         android:name="com.example.crudmysql_eva3.ui.Categoria.categoria"
         android:label="Registrar categoria"
-        tools:layout="@layout/fragment_categoria" />
+        tools:layout="@layout/fragment_categoria" >
+        <action
+            android:id="@+id/action_nav_categoria_to_nav_listaCategorias"
+            app:destination="@id/nav_listaCategorias" />
+    </fragment>
 
     <fragment
         android:id="@+id/nav_listaCategorias"
         android:name="com.example.crudmysql_eva3.ui.ListaCategorias.ListaCategorias"
-        android:label="Lista de Categorias" />
+        android:label="Lista de Categorias"
+        tools:layout="@layout/fragment_lista_categorias">
+        <action
+            android:id="@+id/action_nav_listaCategorias_to_nav_categoria"
+            app:destination="@id/nav_categoria" />
+    </fragment>
+
 
     <fragment
         android:id="@+id/nav_productos"
         android:name="com.example.crudmysql_eva3.ui.Producto.productos"
         android:label="Registrar productos"
         tools:layout="@layout/fragment_productos" />
+
+
     <fragment
         android:id="@+id/nav_usuario"
         android:name="com.example.crudmysql_eva3.ui.Usuario.Usuario"
         android:label="Registrar Usuario"
         tools:layout="@layout/fragment_usuario" />
+
+
+
+    <fragment
+        android:id="@+id/nav_listaProductos"
+        android:name="com.example.crudmysql_eva3.ui.ListaProductos.ListaProductos"
+        android:label="ListaProductos" />
+
+
+    <fragment
+        android:id="@+id/editarCategoria"
+        android:name="com.example.crudmysql_eva3.ui.EditarCategosia.EditarCategoria"
+        android:label="fragment_editar_categoria"
+        tools:layout="@layout/fragment_editar_categoria" />
+
+
+    <fragment
+        android:id="@+id/list_reciclerview"
+        android:name="com.example.crudmysql_eva3.ui.ListaCategorias.list_reciclerview"
+        android:label="list_reciclerview"
+        tools:layout="@layout/fragment_list_reciclerview">
+        <action
+            android:id="@+id/action_list_reciclerview_to_editarCategoria3"
+            app:destination="@id/editarCategoria" />
+    </fragment>
+
+
 </navigation>
